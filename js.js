@@ -16,28 +16,7 @@ window.addEventListener("scroll", function () {
     const header = document.querySelector("header");
     header.classList.toggle("scrolled", window.scrollY > 50);
 });
-/*login*/
-const wrapper = document.querySelector('.wrapper');
-const loginLink = document.querySelector('.login-link');
-const registerLink = document.querySelector('.register-link');
-const btnPopup= document.querySelector('.btnLogin-popup');
-const iconClose= document.querySelector('.icon-close');
 
-registerLink.addEventListener('click', ()=>{
-    wrapper.classList.add('active')
-})
-
-loginLink.addEventListener('click', ()=>{
-    wrapper.classList.remove('active')
-})
-
-btnPopup.addEventListener('click', ()=>{
-    wrapper.classList.add('active-popup')
-})
-
-iconClose.addEventListener('click', ()=>{
-    wrapper.classList.remove('active-popup')
-})
 
 /*slider 1*/
 var counter= 1;
@@ -160,46 +139,80 @@ searchInput.addEventListener('blur', () => {
 });
 
 
+const wrapper = document.querySelector(".wrapper");
+const loginForm = document.querySelector(".from-box.login");
+const registerForm = document.querySelector(".from-box.register");
+const selectTypeForm = document.querySelector(".from-box.select-type");
+const loginLink = document.querySelector(".login-link");
+const registerLink = document.querySelector(".register-link");
+const iconClose = document.querySelector(".icon-close");
+const btnPopup = document.querySelector(".btnLogin-popup");
+const buyerBtn = document.getElementById("buyer-btn");
+const sellerBtn = document.getElementById("seller-btn");
 
-
-
-
-
-
-
-
-
-
-const buyerBtn = document.getElementById('buyer-btn');
-const sellerBtn = document.getElementById('seller-btn');
-const loginForm = document.querySelector('.login');
-const selectTypeForm = document.querySelector('.select-type');
-const closeLoginBtn = document.getElementById('close-login-btn');
-
-// عند الضغط على "مشتري" أو "بائع"
-buyerBtn.addEventListener('click', () => {
-    // اغلق نافذة اختيار المستخدم
-    selectTypeForm.style.display = 'none';
-    
-    // إظهار نموذج تسجيل الدخول
-    loginForm.style.display = 'block';
-    wrapper.classList.add('active-popup'); // إظهار النافذة المنبثقة
+// فتح النافذة المنبثقة عند الضغط على Login
+btnPopup.addEventListener("click", () => {
+    wrapper.classList.add("active-popup");
+    selectTypeForm.style.display = "block";
+    loginForm.style.display = "none";
+    registerForm.style.display = "none";
 });
 
-sellerBtn.addEventListener('click', () => {
-    // نفس ما حدث للمشتري
-    selectTypeForm.style.display = 'none';
-    loginForm.style.display = 'block';
-    wrapper.classList.add('active-popup'); // إظهار النافذة المنبثقة
+// زر إغلاق النافذة
+iconClose.addEventListener("click", () => {
+    wrapper.classList.remove("active-popup");
+    selectTypeForm.style.display = "block"; // يرجع تاني لاختيار المستخدم
+    loginForm.style.display = "none";
+    registerForm.style.display = "none";
 });
 
-// عند الضغط على زر إغلاق نافذة تسجيل الدخول
-closeLoginBtn.addEventListener('click', () => {
-    // إخفاء نافذة تسجيل الدخول وإظهار نافذة اختيار النوع من جديد
-    loginForm.style.display = 'none';
-    selectTypeForm.style.display = 'block';
-    wrapper.classList.remove('active-popup'); // إخفاء النافذة المنبثقة
+// لما أضغط مشتري
+buyerBtn.addEventListener("click", () => {
+    selectTypeForm.style.display = "none";
+    loginForm.style.display = "block";
 });
+
+// لما أضغط بائع
+sellerBtn.addEventListener("click", () => {
+    selectTypeForm.style.display = "none";
+    alert("سيتم إضافة نموذج تسجيل الدخول للبائع لاحقًا.");
+});
+
+// من login لـ register
+registerLink.addEventListener("click", () => {
+    loginForm.style.display = "none";
+    registerForm.style.display = "block";
+});
+
+// من register لـ login
+loginLink.addEventListener("click", () => {
+    registerForm.style.display = "none";
+    loginForm.style.display = "block";
+});
+
+registerLink.addEventListener("click", () => {
+    wrapper.classList.add("active");
+});
+
+loginLink.addEventListener("click", () => {
+    wrapper.classList.remove("active");
+});
+
+btnPopup.addEventListener("click", () => {
+    wrapper.classList.add("active-popup");
+});
+
+iconClose.addEventListener("click", () => {
+    wrapper.classList.remove("active-popup");
+    wrapper.classList.remove("active");
+});
+
+
+
+
+
+
+
 
 
 
